@@ -1,0 +1,27 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <TextView
+        android:id="@+id/text_flashcard_front"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Question"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:textColor="#000000"
+        android:background="#FFE082"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/text_flashcard_back"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Answer"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:textColor="#000000"
+        android:background="#FFCC80"
+        android:visibility="gone" />
+</FrameLayout>
