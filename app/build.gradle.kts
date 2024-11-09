@@ -43,7 +43,12 @@ dependencies {
     // Firebase BOM, all Firebase dependencies will use this version
     implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
     implementation("com.google.firebase:firebase-firestore")
+    implementation ("com.google.firebase:firebase-database:20.0.5")
+    implementation ("com.google.firebase:firebase-core:21.1.0")
+    implementation ("androidx.appcompat:appcompat:1.6.0")
+    implementation ("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation ("com.google.android.material:material:1.8.0") // Corrected closing quote
+    implementation ("com.google.firebase:firebase-database")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
