@@ -5,5 +5,5 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.FlashLearn" parent="Base.Theme.FlashLearn" />
+<!--    <style name="Theme.FlashLearn" parent="Base.Theme.FlashLearn" />-->
 </resources>

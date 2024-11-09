@@ -8,6 +8,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
 public class FlashcardCreationActivity extends AppCompatActivity {
 
@@ -42,12 +44,15 @@ public class FlashcardCreationActivity extends AppCompatActivity {
         String flashcardId = flashcardDatabase.push().getKey();
         Flashcard flashcard = new Flashcard(question, answer);
         flashcardDatabase.child(flashcardId).setValue(flashcard)
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        Toast.makeText(FlashcardCreationActivity.this, "Flashcard saved", Toast.LENGTH_SHORT).show();
-                        finish();
-                    } else {
-                        Toast.makeText(FlashcardCreationActivity.this, "Error saving flashcard", Toast.LENGTH_SHORT).show();
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(FlashcardCreationActivity.this, "Flashcard saved", Toast.LENGTH_SHORT).show();
+                            finish();
+                        } else {
+                            Toast.makeText(FlashcardCreationActivity.this, "Error saving flashcard", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
     }
