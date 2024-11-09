@@ -64,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Handle possible errors
                 Toast.makeText(MainActivity.this, "Error loading flashcards: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
