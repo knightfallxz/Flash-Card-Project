@@ -1,43 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FlashcardCreationActivity">
+    android:padding="16dp">
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/edit_question"
-        android:layout_width="0dp"
+    <EditText
+        android:id="@+id/editTextQuestion"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Question"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="40dp"
-        android:padding="16dp"/>
+        android:hint="Enter question"
+        android:padding="8dp"
+        android:textSize="18sp" />
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/edit_answer"
-        android:layout_width="0dp"
+    <EditText
+        android:id="@+id/editTextAnswer"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Answer"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_question"
-        android:layout_marginTop="16dp"
-        android:padding="16dp"/>
+        android:hint="Enter answer"
+        android:layout_below="@id/editTextQuestion"
+        android:padding="8dp"
+        android:textSize="18sp" />
 
     <Button
-        android:id="@+id/btn_save_flashcard"
-        android:layout_width="wrap_content"
+        android:id="@+id/saveButton"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Save Flashcard"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_answer"
-        android:layout_marginTop="24dp"/>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_below="@id/editTextAnswer"
+        android:layout_marginTop="16dp"
+        android:onClick="saveFlashcard" />
+</RelativeLayout>

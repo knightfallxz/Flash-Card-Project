@@ -1,39 +1,31 @@
 package com.example.flashlearn;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
-public class FlashcardAdapter extends RecyclerView.Adapter<FlashcardAdapter.ViewHolder> {
+public class FlashcardAdapter extends RecyclerView.Adapter<FlashcardAdapter.FlashcardViewHolder> {
 
     private List<Flashcard> flashcards;
-    private Context context;
 
-    public FlashcardAdapter(List<Flashcard> flashcards, Context context) {
+    public FlashcardAdapter(List<Flashcard> flashcards) {
         this.flashcards = flashcards;
-        this.context = context;
-    }
-
-    @NonNull
-    @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_flashcard, parent, false);
-        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public FlashcardViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.flashcard_item, parent, false);
+        return new FlashcardViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(FlashcardViewHolder holder, int position) {
         Flashcard flashcard = flashcards.get(position);
-        holder.questionText.setText(flashcard.getQuestion());
-
-        holder.itemView.setOnClickListener(v -> {
-            // Open flashcard view screen
-        });
+        holder.questionTextView.setText(flashcard.getQuestion());
+        holder.answerTextView.setText(flashcard.getAnswer());
     }
 
     @Override
@@ -41,12 +33,21 @@ public class FlashcardAdapter extends RecyclerView.Adapter<FlashcardAdapter.View
         return flashcards.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView questionText;
+    // Method to update the flashcard list
+    public void updateFlashcards(List<Flashcard> flashcards) {
+        this.flashcards = flashcards;
+        notifyDataSetChanged();
+    }
 
-        public ViewHolder(@NonNull View itemView) {
+    public static class FlashcardViewHolder extends RecyclerView.ViewHolder {
+
+        TextView questionTextView;
+        TextView answerTextView;
+
+        public FlashcardViewHolder(View itemView) {
             super(itemView);
-            questionText = itemView.findViewById(R.id.text_question);
+            questionTextView = itemView.findViewById(R.id.flashcard_question);
+            answerTextView = itemView.findViewById(R.id.flashcard_answer);
         }
     }
 }
