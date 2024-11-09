@@ -2,6 +2,7 @@ package com.example.flashlearn;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -43,6 +44,18 @@ public class FlashcardCreationActivity extends AppCompatActivity {
     private void saveFlashcardToFirebase(String question, String answer) {
         String flashcardId = flashcardDatabase.push().getKey();
         Flashcard flashcard = new Flashcard(question, answer);
+
+        // Debugging: Write a test value to a different node "testNode"
+        FirebaseDatabase.getInstance().getReference("testNode").setValue("Hello, Firebase!")
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Log.d("FirebaseDebug", "Test data saved to Firebase");
+                    } else {
+                        Log.d("FirebaseDebug", "Error saving test data: " + task.getException());
+                    }
+                });
+
+        // Now save the flashcard to the "flashcards" node
         flashcardDatabase.child(flashcardId).setValue(flashcard)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
